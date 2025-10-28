@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    # Commands to install dependencies
+    commands:
+      - echo Installing NPM dependencies...
+      - npm install
+  build:
+    # Commands to compile, run tests, and package
+    commands:
+      - echo Running build and tests...
+      - npm run test  # If you have a test script
+      - npm run build # Your final build command (e.g., creating a 'dist' folder)
+
+artifacts:
+  # Files to be packaged into a ZIP and passed to the Deploy stage
+  files:
+    - '**/*' # Packages everything from the build output directory
+  discard-paths: yes
