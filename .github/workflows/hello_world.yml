@@ -1,0 +1,32 @@
+# 1. Name the workflow (visible in the Actions tab)
+name: Basic Hello World Message
+
+# 2. Define the trigger: when should this workflow run?
+on:
+  push:
+    # Runs whenever code is pushed to the 'main' branch
+    branches:
+      - main
+  # Also allows manual execution from the GitHub UI
+  workflow_dispatch:
+
+# 3. Define the jobs that will run
+jobs:
+  # This is the name of our first job
+  say_hello_job:
+    # 4. Specify the runner (virtual machine) to use
+    runs-on: ubuntu-latest
+
+    # 5. Define the steps within the job
+    steps:
+      # Step 1: Uses a pre-built action to check out the repository code
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      # Step 2: Executes a standard shell command
+      - name: Run a greeting command
+        run: echo "👋 Hello, GitHub Actions! This workflow succeeded."
+
+      # Step 3: Executes another command
+      - name: Show current folder structure
+        run: ls -al
