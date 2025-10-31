@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Capstone Demo App</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl max-w-lg w-full text-center border-t-4 border-indigo-600">
+        <!-- Main Header -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            CI/CD Capstone Demo
+        </h1>
+
+        <!-- Subtitle and Description -->
+        <p class="text-xl text-indigo-600 font-semibold mb-6">
+            Deployment Successful!
+        </p>
+
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            This simple application file was automatically deployed via a **Continuous Deployment (CD)** workflow using GitHub Actions.
+        </p>
+
+        <!-- Status Box -->
+        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
+            <p class="text-sm font-medium text-indigo-700">
+                Current Deployment Status: <span class="font-bold">LIVE AND WORKING!</span>
+            </p>
+            <p class="text-xs text-indigo-500 mt-1">
+                You fixed the 404 error by adding the index.html file.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
