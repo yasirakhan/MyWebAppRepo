@@ -1,0 +1,56 @@
+# This workflow is responsible for deploying the application to GitHub Pages.
+
+# 1. Name the workflow
+name: 🚀 Deploy to GitHub Pages (CD)
+
+# 2. Define the trigger
+# This workflow only runs when a push happens to the 'main' branch,
+# ensuring the CI part (if you added one) has already passed.
+on:
+  push:
+    branches:
+      - main
+  # Allows manual execution
+  workflow_dispatch:
+
+# 3. Define permissions required for deployment
+# The GITHUB_TOKEN needs write access to the pages/id-token for deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 4. Define the jobs
+jobs:
+  # This job handles the actual deployment
+  deploy:
+    # Runs on the latest Ubuntu runner
+    runs-on: ubuntu-latest
+    
+    # Ensures the deployment only starts after the environment is configured
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the GitHub Pages environment
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Step 3: Upload the application files as an artifact
+      # We assume the index.html (your app) is at the root of the repository ('.')
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # This specifies the directory containing the content to be deployed.
+          # Since our simple HTML is at the root, we use '.'
+          path: '.'
+
+      # Step 4: Deploy the artifact to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
